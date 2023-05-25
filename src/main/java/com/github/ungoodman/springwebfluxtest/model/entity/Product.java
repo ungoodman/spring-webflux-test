@@ -1,5 +1,6 @@
 package com.github.ungoodman.springwebfluxtest.model.entity;
 
+import com.github.ungoodman.springwebfluxtest.model.enums.StatusCode;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
@@ -28,6 +29,9 @@ public class Product {
 
     @Column("amount")
     private Integer amount;
+
+    @Column("sts_cd")
+    private StatusCode statusCode;
 
     @Column("crt_time")
     private LocalDateTime createdTime;

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -24,6 +23,7 @@ public class ProductCommandService {
         productToSave.setProductCode(productDTO.getProductCode());
         productToSave.setProductName(productDTO.getProductName());
         productToSave.setCreatedBy("SYSTEM");
+        productToSave.setStatusCode(StatusCode.INACTIVE);
         productToSave.setCreatedTime(LocalDateTime.now());
         productToSave.setAmount(productDTO.getAmount());
 
