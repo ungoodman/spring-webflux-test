@@ -23,7 +23,7 @@ public class ProductCommandService {
         productToSave.setProductCode(productDTO.getProductCode());
         productToSave.setProductName(productDTO.getProductName());
         productToSave.setCreatedBy("SYSTEM");
-        productToSave.setStatusCode(StatusCode.INACTIVE);
+        productToSave.setStatusCode(StatusCode.INACTIVE.getCode());
         productToSave.setCreatedTime(LocalDateTime.now());
         productToSave.setAmount(productDTO.getAmount());
 

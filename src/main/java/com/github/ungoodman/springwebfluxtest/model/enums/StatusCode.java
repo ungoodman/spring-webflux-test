@@ -10,4 +10,8 @@ public enum StatusCode {
     StatusCode(String statusCode) {
         this.code = statusCode;
     }
+
+    public String getCode() {
+        return code;
+    }
 }
