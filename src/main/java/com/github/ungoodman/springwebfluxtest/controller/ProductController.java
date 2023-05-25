@@ -1,7 +1,7 @@
 package com.github.ungoodman.springwebfluxtest.controller;
 
-import com.github.ungoodman.springwebfluxtest.dto.ProductDTO;
-import com.github.ungoodman.springwebfluxtest.entity.Product;
+import com.github.ungoodman.springwebfluxtest.model.dto.ProductDTO;
+import com.github.ungoodman.springwebfluxtest.model.entity.Product;
 import com.github.ungoodman.springwebfluxtest.service.command.ProductCommandService;
 import com.github.ungoodman.springwebfluxtest.service.query.ProductQueryService;
 import org.springframework.beans.factory.annotation.Autowired;

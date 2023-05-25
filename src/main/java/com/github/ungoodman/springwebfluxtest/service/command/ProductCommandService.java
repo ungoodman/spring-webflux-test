@@ -1,7 +1,8 @@
 package com.github.ungoodman.springwebfluxtest.service.command;
 
-import com.github.ungoodman.springwebfluxtest.dto.ProductDTO;
-import com.github.ungoodman.springwebfluxtest.entity.Product;
+import com.github.ungoodman.springwebfluxtest.model.dto.ProductDTO;
+import com.github.ungoodman.springwebfluxtest.model.entity.Product;
+import com.github.ungoodman.springwebfluxtest.model.enums.StatusCode;
 import com.github.ungoodman.springwebfluxtest.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

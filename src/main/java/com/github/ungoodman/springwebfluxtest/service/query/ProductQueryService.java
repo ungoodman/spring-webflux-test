@@ -1,6 +1,6 @@
 package com.github.ungoodman.springwebfluxtest.service.query;
 
-import com.github.ungoodman.springwebfluxtest.entity.Product;
+import com.github.ungoodman.springwebfluxtest.model.entity.Product;
 import com.github.ungoodman.springwebfluxtest.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

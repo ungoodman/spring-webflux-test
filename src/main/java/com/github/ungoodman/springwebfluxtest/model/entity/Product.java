@@ -1,4 +1,4 @@
-package com.github.ungoodman.springwebfluxtest.entity;
+package com.github.ungoodman.springwebfluxtest.model.entity;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;

@@ -1,4 +1,4 @@
-package com.github.ungoodman.springwebfluxtest.dto;
+package com.github.ungoodman.springwebfluxtest.model.dto;
 
 import lombok.*;
 
