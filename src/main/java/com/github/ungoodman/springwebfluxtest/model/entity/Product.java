@@ -32,6 +32,9 @@ public class Product {
     @Column("sts_cd")
     private String statusCode;
 
+    @Column("ver_nbr")
+    private Integer version;
+
     @Column("crt_time")
     private LocalDateTime createdTime;
 
