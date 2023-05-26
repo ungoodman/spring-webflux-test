@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS t_product (
     nm VARCHAR(255) NOT NULL,
     amount INT8 NULL,
     sts_cd VARCHAR(255) NOT NULL,
+    ver_nbr INT8 NOT NULL DEFAULT 0,
     crt_time TIMESTAMPTZ NULL,
     crt_by VARCHAR(255) NOT NULL,
     upd_time TIMESTAMPTZ NULL,
