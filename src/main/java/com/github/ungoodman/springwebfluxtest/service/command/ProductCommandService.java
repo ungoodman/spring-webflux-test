@@ -1,7 +1,6 @@
 package com.github.ungoodman.springwebfluxtest.service.command;
 
 import com.github.ungoodman.springwebfluxtest.converter.ProductEntityToResponseDTOConverter;
-import com.github.ungoodman.springwebfluxtest.model.dto.response.ProductResponseDTO;
 import com.github.ungoodman.springwebfluxtest.model.entity.Product;
 import com.github.ungoodman.springwebfluxtest.repository.ProductRepository;
 import lombok.AllArgsConstructor;
@@ -20,7 +19,7 @@ public class ProductCommandService {
     @Autowired
     private ProductEntityToResponseDTOConverter entityToResponseDTOConverter;
 
-    public Mono<ProductResponseDTO> saveProduct(Product productToSave) {
-        return repository.save(productToSave).map(product -> entityToResponseDTOConverter.convert(product));
+    public Mono<Product> saveProduct(Product productToSave) {
+        return repository.save(productToSave);
     }
 }
