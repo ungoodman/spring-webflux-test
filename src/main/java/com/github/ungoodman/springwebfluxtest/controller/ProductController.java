@@ -1,9 +1,9 @@
 package com.github.ungoodman.springwebfluxtest.controller;
 
-import com.github.ungoodman.springwebfluxtest.model.dto.ProductDTO;
-import com.github.ungoodman.springwebfluxtest.model.entity.Product;
-import com.github.ungoodman.springwebfluxtest.service.command.ProductCommandService;
-import com.github.ungoodman.springwebfluxtest.service.query.ProductQueryService;
+import com.github.ungoodman.springwebfluxtest.model.dto.request.ProductRequestDTO;
+import com.github.ungoodman.springwebfluxtest.model.dto.response.ProductResponseDTO;
+import com.github.ungoodman.springwebfluxtest.model.enums.Action;
+import com.github.ungoodman.springwebfluxtest.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -13,29 +13,30 @@ import reactor.core.publisher.Mono;
 @RequestMapping("/v1/products")
 public class ProductController {
     @Autowired
-    private ProductQueryService queryService;
-
-    @Autowired
-    private ProductCommandService commandService;
+    private ProductService service;
 
     @GetMapping("/")
-    public Flux<Product> getAllProducts() {
-        return queryService.findAll();
+    public Flux<ProductResponseDTO> getAllProducts() {
+        return service.retrieveAllProducts();
     }
 
     @GetMapping("/{id}")
-    public Mono<Product> getProductById(@PathVariable("id") String id) {
-        return queryService.findById(id);
+    public Mono<ProductResponseDTO> getProductById(@PathVariable("id") String id) {
+        return service.findById(id);
     }
 
-    @GetMapping("/{code}")
-    public Mono<Product> getProductByCode(@PathVariable("code") String code) {
-        return queryService.findByCode(code);
+    @PostMapping(value = "/", consumes = "application/json")
+    public Mono<ProductResponseDTO> createProduct(@RequestBody ProductRequestDTO requestDTO) {
+        return service.createNewProduct(requestDTO);
     }
 
-    @PostMapping("/")
-    public Mono<Product> createProduct(@RequestBody ProductDTO productDTO) {
-        return commandService.createNewProduct(productDTO);
+    @PostMapping(value = "/{id}/{action}", consumes = "application/json")
+    public Mono<ProductResponseDTO> performActionProduct(
+            @PathVariable("id") String id,
+            @PathVariable("action") Action action,
+            @RequestBody ProductRequestDTO requestDTO
+    ) {
+        return service.performAction(id, action, requestDTO);
     }
 
 }
