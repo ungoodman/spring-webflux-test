@@ -1,32 +1,26 @@
 package com.github.ungoodman.springwebfluxtest.service.command;
 
-import com.github.ungoodman.springwebfluxtest.model.dto.ProductDTO;
+import com.github.ungoodman.springwebfluxtest.converter.ProductEntityToResponseDTOConverter;
+import com.github.ungoodman.springwebfluxtest.model.dto.response.ProductResponseDTO;
 import com.github.ungoodman.springwebfluxtest.model.entity.Product;
-import com.github.ungoodman.springwebfluxtest.model.enums.StatusCode;
 import com.github.ungoodman.springwebfluxtest.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
-
-import java.time.LocalDateTime;
 
 @Service
 @AllArgsConstructor
+@Transactional
 public class ProductCommandService {
     @Autowired
     private ProductRepository repository;
 
-    public Mono<Product> createNewProduct(ProductDTO productDTO) {
-        Product productToSave = new Product();
+    @Autowired
+    private ProductEntityToResponseDTOConverter entityToResponseDTOConverter;
 
-        productToSave.setProductCode(productDTO.getProductCode());
-        productToSave.setProductName(productDTO.getProductName());
-        productToSave.setCreatedBy("SYSTEM");
-        productToSave.setStatusCode(StatusCode.INACTIVE.getCode());
-        productToSave.setCreatedTime(LocalDateTime.now());
-        productToSave.setAmount(productDTO.getAmount());
-
-        return repository.save(productToSave);
+    public Mono<ProductResponseDTO> saveProduct(Product productToSave) {
+        return repository.save(productToSave).map(product -> entityToResponseDTOConverter.convert(product));
     }
 }
